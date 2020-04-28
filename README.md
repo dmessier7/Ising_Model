@@ -18,6 +18,8 @@ Functions:
      steps - number of steps the metropolis algorithm goes through
      size - edge length of the lattice (e.g. 10 would gives square lattice of 100 sites)
      T - temperature for which the algorithm runs at
+ 
+ 
  Returns: lattice that is an nparray</dd>
  
  <dt>funcList(steps, size, T): Metropolis Algorithm returning lists of the Energy and Magnetization after each step</dt>
@@ -25,6 +27,8 @@ Functions:
      steps - number of steps the metropolis algorithm goes through
      size - edge length of the lattice (e.g. 10 would gives square lattice of 100 sites)
      T - temperature for which the algorithm runs at
+ 
+ 
   Returns: Energy, Magnetization as lists</dd>
   
 <dt>AVG(runs, steps, size, T): Find the average Energy and Magnetization of finalized lattices over a number of runs</dt>
@@ -33,6 +37,8 @@ Functions:
     steps - number of steps the metropolis algorithm goes through
     size - edge length of the lattice (e.g. 10 would gives square lattice of 100 sites)
     T - temperature for which the algorithm runs at 
+ 
+ 
   Returns: Epo, Ene, Mpo, Mne
     Epo - Average of the positive energy values
     Ene - Average of the positive energy values
