@@ -117,6 +117,7 @@ def AVG(runs, steps, size, T):
 # Store n finalized lattices for a range of tempeatures into a csv
 def store(L, stps, tempRange, n): 
     S = ['S'+ str(i) for i in range(L**2)]
+    S.insert(0, 'T')
     M = [str(round(i,1))+':'+str(j) for i in tempRange for j in range(n)]
     data = pd.DataFrame(columns=S, index=M)
     for i in tempRange:
@@ -125,7 +126,8 @@ def store(L, stps, tempRange, n):
         while b < n:
             m = func(stps, L, i)
             latt = m.flatten()
-            data.loc[str(i)+':'+ str(b)] = m
+            latt  = np.concatenate(([i],latt), axis=0)
+            data.loc[str(i)+':'+ str(b)] = latt
             b += 1
     p = os.getcwd()
-    data.to_csv (r''+p+'/'+str(L)+'.csv', index = True, header=True)
+    data.to_csv (r''+p+'/'+str(L)+'_'+str(stps)+'.csv', index = True, header=True)
