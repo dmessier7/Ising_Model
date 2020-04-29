@@ -1,6 +1,6 @@
 # Ising_Model
  
-Purpose:
+Purpose: To explore concepts of Statistical Physics and tools in Data Science through the Ising Model.
 
 ## Files
 
