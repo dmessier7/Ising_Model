@@ -3,11 +3,36 @@
 Purpose: To explore concepts of Statistical Physics and tools in Data Science through the Ising Model.
 
 ## Files
+### Notebooks
+<dl> 
+ <dt>GraphingMetroSim</dt>
+ <dd>This notebook demonstrates the functions in the MetroSim.py file to ensure their functionality. Including a graph of the Magnetization/site change over temperature.</dd>
+ <dt>PCA_sklearn</dt>
+ <dd>This notebook uses Principal Component Analysis, a linear dimensional reduction of data, to observe the three possible states of an Ising Lattice: polarized up spin, polarized down spin, and unpolarized.</dd>
+ <dt>T-SNE_sklearn</dt>
+ <dd>This notebook demonstrates T-SNE, a nonlinear dimensional reduction of data, to visualize the three possible states of an Ising Lattice: polarized up spin, polarized down spin, and unpolarized.</dd>
+ <dt>PerceptronModel</dt>
+ <dd>This notebook demonstrates a simple linear neural network with an input later, one hidden layer of perceptrons, and an output layer.</dd>
+ <dt>ConvolutionNN</dt>
+ <dd>This notebook is to demonstrate a convolutional neural network that predicts the whether an Ising Model lattice was simulated below or above the Curie Temperature.</dd>
+ </dl>
+ 
+### Reference Files
 
-
-The MetroSim.py file contains the functions for running the Metropolis Algorithm and for storing its results in a csv file.
 <dl>
-Functions:
+ <dt>MetroSim.py</dt>
+ <dd>This file contains the functions for running the Metropolis Algorithm and for storing its results in a csv file.</dd>
+ </dl>
+ 
+### CSVs
+
+<dl>
+ <dd>Data sets are kept in csv files for further analysis. The naming scheme: edgeLength_NumberOfSteps_RunsPerTemperature.csv</dd>
+ </dl>
+
+## Function Documentation
+### The MetroSim.py 
+<dl>
 <dt>Calc(lattice): Calculate the Energy and Magnetization of a lattice.</dt>
  <dd>Parameters:
    lattice - nparray of the lattice
