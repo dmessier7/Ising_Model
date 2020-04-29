@@ -94,16 +94,8 @@ def AVG(runs, steps, size, T):
         E.append(h)
         M.append(j)
         i+=1
-    Epos,Eneg=[i for i in E if i>0 ],[j for j in E if j<0]
+    E = sum(E)/len(E)
     Mpos, Mneg=[i for i in M if i>0 ],[j for j in M if j<0] 
-    if len(Epos) != 0:
-        Epo = sum(Epos)/len(Epos)
-    else:
-        Epo = None
-    if len(Eneg) != 0:
-        Ene = sum(Eneg)/len(Eneg)
-    else:
-        Ene = None
     if len(Mpos) != 0:
         Mpo = sum(Mpos)/len(Mpos)
     else:
@@ -112,7 +104,7 @@ def AVG(runs, steps, size, T):
         Mne = sum(Mneg)/len(Mneg)
     else:
         Mne = None
-    return Epo, Ene, Mpo, Mne
+    return E, Mpo, Mne
 
 # Store n finalized lattices for a range of tempeatures into a csv
 def store(L, stps, tempRange, n): 
