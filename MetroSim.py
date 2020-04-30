@@ -83,6 +83,27 @@ def funcList(steps, size, T): # Function to run through
     M[:] = [x / (size**2) for x in M] # Magnetization per site
     return E, M
 
+def funcArray(steps, size, T): # Function to run through
+    s = 0
+    arrays = []
+    latt = Setup(size) # Set up random lattice of size^2
+    arrays.append(latt)
+    while s < steps:
+        n, m = r.randrange(0, size, 1), r.randrange(0, size, 1) # two random values for a random location on the lattice
+        old  = (latt[(n-1)%size,m]*latt[n,m]) + (latt[(n+1)%size,m]*latt[n,m]) + (latt[n,(m-1)%size]*latt[n,m]) + (latt[n,(m+1)%size]*latt[n,m])
+        latt[n,m] *= -1 # try flipping the spin at that site
+        new  = (latt[(n-1)%size,m]*latt[n,m]) + (latt[(n+1)%size,m]*latt[n,m]) + (latt[n,(m-1)%size]*latt[n,m]) + (latt[n,(m+1)%size]*latt[n,m])
+        de = -J*(new - old) # dE = Ef - Ei
+        if de > 0 and r.random() > np.exp(-de/(k*T)):
+                latt[n,m] *= -1 # Return the spin to normal if not accepted
+                arrays.append(latt)
+        # The lattice wont change back unless the de is positive and the random number is above transition prob
+        else:
+            arrays.append(latt)
+            
+        s += 1
+    return arrays
+
 # Find Average magnetization and energy for a temperature
 def AVG(runs, steps, size, T):
     E = []
