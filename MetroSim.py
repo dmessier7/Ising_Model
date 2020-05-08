@@ -85,9 +85,8 @@ def funcList(steps, size, T): # Function to run through
 
 def funcArray(steps, size, T): # Function to run through
     s = 0
-    arrays = []
     latt = Setup(size) # Set up random lattice of size^2
-    arrays.append(latt)
+    arrays = []
     while s < steps:
         n, m = r.randrange(0, size, 1), r.randrange(0, size, 1) # two random values for a random location on the lattice
         old  = (latt[(n-1)%size,m]*latt[n,m]) + (latt[(n+1)%size,m]*latt[n,m]) + (latt[n,(m-1)%size]*latt[n,m]) + (latt[n,(m+1)%size]*latt[n,m])
@@ -95,12 +94,11 @@ def funcArray(steps, size, T): # Function to run through
         new  = (latt[(n-1)%size,m]*latt[n,m]) + (latt[(n+1)%size,m]*latt[n,m]) + (latt[n,(m-1)%size]*latt[n,m]) + (latt[n,(m+1)%size]*latt[n,m])
         de = -J*(new - old) # dE = Ef - Ei
         if de > 0 and r.random() > np.exp(-de/(k*T)):
-                latt[n,m] *= -1 # Return the spin to normal if not accepted
-                arrays.append(latt)
+            latt[n,m] *= -1 # Return the spin to normal if not accepted
+            arrays.append(latt[:,:])
         # The lattice wont change back unless the de is positive and the random number is above transition prob
         else:
-            arrays.append(latt)
-            
+            arrays.append(latt[:,:]) 
         s += 1
     return arrays
 
@@ -128,7 +126,7 @@ def AVG(runs, steps, size, T):
     return E, Mpo, Mne
 
 # Store n finalized lattices for a range of tempeatures into a csv
-def store(L, stps, tempRange, n): 
+def store(L, stps, tempRange, n, num): 
     S = ['S'+ str(i) for i in range(L**2)]
     S.insert(0, 'T')
     M = [str(round(i,1))+':'+str(j) for i in tempRange for j in range(n)]
@@ -143,4 +141,4 @@ def store(L, stps, tempRange, n):
             data.loc[str(i)+':'+ str(b)] = latt
             b += 1
     p = os.getcwd()
-    data.to_csv (r''+p+'/'+str(L)+'_'+str(stps)+'.csv', index = True, header=True)
+    data.to_csv (r''+p+'/'+str(L)+'_'+str(stps)+'_'+str(n)+'_'+str(num)+'.csv', index = True, header=True)
